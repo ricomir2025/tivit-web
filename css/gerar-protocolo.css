@@ -1,0 +1,475 @@
+/* Protocol Generation Page Styles */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #121212;
+}
+
+.header-title {
+    margin-bottom: 20px;
+}
+
+.header-title h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.header-title p {
+    color: #aaa; /* Removed extraneous 'group' and duplicate properties */
+    font-size: 14px;
+}
+
+/* Header com inputs */
+.header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    background-color: #1a1a1a;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.header h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #eee;
+    align-self: flex-start;
+}
+
+.header .input-controls {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    justify-content: flex-start; /* Alinhamento à esquerda */
+    width: 100%;
+}
+
+.input-group {
+    margin-bottom: 0;
+    flex: 0 1 auto; /* Permite que os grupos de input ocupem espaço necessário */
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.input-group input {
+    font-size: 18px; /* Aumenta o tamanho da fonte */
+    padding: 8px 12px; /* Ajusta o padding para acomodar a fonte maior */
+    width: 100%;
+    height: 40px; /* Define altura fixa para alinhar com os botões */
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    width: 100%; /* Ocupa toda a largura disponível */
+    justify-content: space-between; /* Distribui os elementos */
+}
+
+/* Base button style matching Pre-Fatura */
+.btn-import {
+    background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+}
+
+.btn-import:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(108, 92, 231, 0.45);
+    filter: brightness(1.1);
+}
+
+.btn-import:active {
+    transform: translateY(0);
+}
+
+.btn-import i {
+    font-size: 15px;
+}
+
+
+#finalizar-protocolo {
+    margin-left: auto; /* Empurra para a extrema direita */
+
+}
+
+.button-group button {
+    height: 40px; /* Mesma altura dos inputs */
+}
+
+
+.btn-importar:hover {
+    background-color: #5d4ed6;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    color: #6c5ce7;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.6s ease;
+}
+
+.btn-icon:hover {
+    color: #8b7ff7;
+    transform: scale(1.2);
+    animation: icon-pulse 0.8s ease-in-out;
+}
+
+@keyframes icon-pulse {
+    0%, 100% {
+        transform: scale(1.2);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #eee;
+    margin-bottom: 20px;
+}
+
+thead {
+    border-bottom: 1px solid #333;
+}
+
+th {
+    text-align: left;
+    padding: 10px 15px;
+    font-weight: 500;
+    color: #6c5ce7;
+    font-size: 14px;
+}
+
+td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #222;
+    font-size: 14px;
+}
+
+tbody tr:hover {
+    background-color: #222;
+}
+
+/* Process log styles */
+.process-log {
+    margin-top: 20px;
+    background-color: #1a1a1a;
+    border-radius: 6px;
+    border: 1px solid #333;
+    overflow: hidden;
+}
+
+.process-log h4 {
+    margin: 0;
+    padding: 12px 15px;
+    background-color: #222;
+    border-bottom: 1px solid #333;
+    font-size: 16px;
+    color: #eee;
+}
+
+.log-entries {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px 0;
+}
+
+.log-entry {
+    padding: 6px 15px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 13px;
+    line-height: 1.4;
+    display: flex;
+    align-items: flex-start;
+}
+
+.log-entry:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.log-time {
+    color: #888;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.log-message {
+    color: #bbb;
+}
+
+.log-entry.info .log-message {
+    color: #bbb;
+}
+
+.log-entry.success .log-message {
+    color: #2ecc71;
+}
+
+.log-entry.error .log-message {
+    color: #e74c3c;
+}
+
+.log-entry.warning .log-message {
+    color: #f39c12;
+}
+
+
+/* Protocol actions */
+.protocol-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.protocol-actions button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    border: none;
+}
+
+.protocol-actions .btn-primary {
+    background-color: #6c5ce7;
+    color: white;
+}
+
+.protocol-actions .btn-primary:hover {
+    background-color: #5d4ed6;
+}
+
+.protocol-actions .btn-secondary {
+    background-color: #2a2a2a;
+    color: #eee;
+}
+
+.protocol-actions .btn-secondary:hover {
+    background-color: #333;
+}
+
+/* Form layout */
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* Note input area */
+.note-input-area {
+    background-color: #222;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.note-input-area h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #eee;
+}
+
+/* Protocol info */
+.protocol-info {
+    background-color: #222;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.protocol-info h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #eee;
+}
+
+/* Status indicators */
+.status-success {
+    color: #2ecc71;
+    font-weight: 500;
+}
+
+.status-pending {
+    color: #f39c12;
+    font-weight: 500;
+}
+
+.status-error {
+    color: #e74c3c;
+    font-weight: 500;}
+
+
+/* Estilos para o cabeçalho da seção de conteúdo */
+.content-header {
+    display: flex; /* Habilita Flexbox */
+    flex-direction: column; /* Empilha os itens verticalmente */
+    align-items: center; /* Centraliza os itens horizontalmente */
+    margin-bottom: 20px; /* Aumenta a margem inferior para dar espaço antes da tabela */
+    padding-bottom: 10px;
+    border-bottom: 1px solid #444;
+}
+
+.content-header h2 {
+    margin: 0 0 10px 0; /* Adiciona margem inferior ao título */
+    text-align: center; /* Centraliza o texto do título */
+}
+
+/* Estilos para o indicador do remetente */
+.remetente-indicator {
+    background-color: #6c5ce7;
+    color: #ffffff;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+    cursor: default;
+    display: inline-block;
+    /* align-self: center; /* Não é mais necessário pois o container já centraliza */
+    /* margin-top: 10px; /* Adiciona espaço acima do label (opcional, ajuste conforme necessário) */
+}
+
+/* Estilos para a tabela e seus botões */
+#relatorio-notas {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#relatorio-notas th,
+#relatorio-notas td {
+    border: 1px solid #444;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 0.9em;
+}
+
+#relatorio-notas th {
+    background-color: #333;
+    color: #eee;
+}
+
+#relatorio-notas tbody tr:nth-child(even) {
+    background-color: #2c2c2c;
+}
+
+#relatorio-notas tbody tr:hover {
+    background-color: #4a4a4a;
+}
+
+.excluir-btn {
+    background-color: #dc3545; /* Vermelho para indicar exclusão */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8em;
+    transition: all 0.6s ease;
+}
+
+.excluir-btn:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+    animation: danger-pulse 1.0s ease-in-out;
+    box-shadow: 0 0 10px rgba(220, 53, 69, 0.4);
+}
+
+@keyframes danger-pulse {
+    0%, 100% {
+        transform: scale(1.05);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Custom Confirmation Modal Styles */
+.modal-overlay {
+    position: fixed; /* Cover the whole screen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Vertically center */
+    z-index: 1000; /* Ensure it's on top */
+}
+
+.modal-content {
+    background-color: #1a1a1a; /* Dark background like the page */
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    color: #eee; /* Light text */
+    text-align: center;
+    max-width: 400px; /* Limit width */
+    width: 90%; /* Responsive width */
+}
+
+.modal-content p {
+    margin-bottom: 25px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center; /* Center buttons */
+    gap: 15px; /* Space between buttons */
+}
+
+/* Use existing button styles or define specific ones */
+.modal-actions button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    border: none;
+    min-width: 100px; /* Give buttons some width */
+}
+
+/* Assuming .btn-primary and .btn-secondary are defined elsewhere matching the page style */
+/* If not, add styles similar to your existing buttons */
+.modal-actions .btn-primary {
+    background-color: #6c5ce7; /* Example primary color */
+    color: white;
+}
+.modal-actions .btn-primary:hover {
+    background-color: #5d4ed6; /* Example hover color */
+}
+
+.modal-actions .btn-secondary {
+    background-color: #2a2a2a; /* Example secondary color */
+    color: #eee;
+}
+.modal-actions .btn-secondary:hover {
+    background-color: #333; /* Example hover color */
+}

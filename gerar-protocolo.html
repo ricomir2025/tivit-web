@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerar Protocolo | Controles Logmam</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/gerar-protocolo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Barra Lateral Esquerda -->
+        <aside class="sidebar">
+            <div id="user-info-section" class="sidebar-user-info">
+                <div class="user-avatar"><i class="fas fa-user-circle"></i></div>
+                <div class="user-details">
+                    <span class="user-name">Carregando...</span>
+                    <span class="user-profile">...</span>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="gerar-protocolo.html" class="active"><i class="fas fa-file-alt"></i> Gerar
+                            Protocolo</a></li>
+                    <li><a href="upload.html"><i class="fas fa-upload"></i> Upload de Dados</a></li>
+                    <li><a href="fretes-dedicados.html"><i class="fas fa-truck"></i> Fretes Dedicados</a></li>
+                    <li><a href="ocr-danfe.html"><i class="fas fa-barcode"></i> OCR - Gerar XML</a></li>
+                    <li><a href="pre-fatura.html"><i class="fas fa-file-invoice"></i> Pré-Fatura</a></li>
+                    <li><a href="#" id="logout-btn" class="logout-link"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- {{ Remove the old sidebar-logo div if it exists }} -->
+            <!-- <div class="sidebar-logo"> ... </div> -->
+
+            <!-- {{ Ensure this footer div is present and correct }} -->
+            <div class="sidebar-footer">
+                <!-- {{ Add the image here }} -->
+                <img src="images/logmam.png" alt="Logmam Logo"
+                    style="max-width: 50%; height: auto; display: block; margin: 0 auto 10px auto;">
+                <!-- Added basic inline styles for sizing/spacing -->
+            </div>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <!-- Frame no Topo -->
+            <header class="header">
+                <h2><i class="fas fa-file-alt" style="margin-right: 10px; color: #6c5ce7;"></i>Gerar Protocolo</h2>
+                <div class="input-controls">
+                    <div class="input-group">
+                        <label for="nfs">Nota Fiscal:</label>
+                        <input type="text" id="nfs" name="nfs" placeholder="Ex: 38972, 39202">
+                    </div>
+                    <div class="input-group">
+                        <label for="data-entrega">Data de Entrega:</label>
+                        <input type="date" id="data-entrega" name="data-entrega">
+                    </div>
+                    <div class="button-group">
+                        <button id="gravar-nota" class="btn-import"><i class="fas fa-save"></i> Gravar</button>
+                        <button id="finalizar-protocolo" class="btn-import btn-finalizar"><i class="fas fa-check-circle"></i> Finalizar Protocolo</button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Frame Central -->
+            <section class="content">
+                <!-- Header modificado para incluir o label do remetente -->
+                <header class="header content-header"> <!-- Adicionada classe content-header -->
+                    <h2>Dados Protocolo Atual</h2>
+                    <!-- Span para exibir o remetente, inicialmente oculto -->
+                    <span id="remetente-label" class="remetente-indicator" style="display: none;"></span>
+                </header>
+                <table id="relatorio-notas">
+                    <thead>
+                        <tr>
+                            <th>CNPJ</th>
+                            <th>REMETENTE</th>
+                            <th>NOTA FISCAL</th>
+                            <th>SERIE</th>
+                            <th>CTE</th>
+                            <th>EMISSÃO</th>
+                            <th>VALOR</th>
+                            <th>SHIPMENT</th>
+                            <th>DATA ENTREGA</th>
+                            <th>AÇÃO</th> <!-- Adicionada coluna AÇÃO para o botão excluir -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Linhas serão adicionadas dinamicamente -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+
+    <div id="custom-confirm-overlay" class="modal-overlay" style="display: none;">
+        <div id="custom-confirm-modal" class="modal-content">
+            <p id="custom-confirm-message">Confirma a Finalização do Protocolo?</p>
+            <div class="modal-actions">
+                <button id="custom-confirm-yes" class="btn-primary">Sim, Gerar</button>
+                <button id="custom-confirm-no" class="btn-secondary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

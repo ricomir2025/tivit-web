@@ -1,0 +1,9 @@
+- Crie um item novo no Sidebar "Pré-Fatura", com o link para uma pagina que faça ofereça a importação de um arquivo de texto com dados de uma Pré-Fatura que utiliza o layout do Proceda.
+- Não crie link na home layout 
+- Use o layout padrão para criar o processo de leitura correto.
+- Crie um design do tipo 'TABELA' para listar os documentos fiscais que constam na pre-fatura, constando numero do documento, valor. 
+- No topo da tabela informe o numero da pre-fatura (se houver), quantidade de documentos fiscais e a soma do valor total.
+- Acima desse resumo o app deve mostrar um botão importar Pré-Fatura que abre um modal para que o usuário localize o arquivo a ser analisado. 
+- Essa parte do app será apenas leitura e interpretação de arquivo, não sendo nada gravado em back-end. Sendo assim seria interessante oferecer no topo da pagina a opção do usuário salvar os dados da pagina em um PDF, com o mesmo layout da pagina interpretada.
+- Após o usuário clicar em qualquer outro link, force a página a limpar os dados de cache para não ficarmos com memória comprometida.
+- Na diretório 'samples' deixei o layout oficial e o arquivo 'PreFat_teste.txt' para teste de implementação.

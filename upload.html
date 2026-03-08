@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload de Dados | Controles Logmam</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/upload.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Add Supabase and PapaParse from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <!-- Add xlsx library from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Barra Lateral Esquerda -->
+        <aside class="sidebar">
+            <div id="user-info-section" class="sidebar-user-info">
+                <div class="user-avatar"><i class="fas fa-user-circle"></i></div>
+                <div class="user-details">
+                    <span class="user-name">Carregando...</span>
+                    <span class="user-profile">...</span>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="gerar-protocolo.html"><i class="fas fa-file-alt"></i> Gerar Protocolo</a></li>
+                    <li><a href="upload.html" class="active"><i class="fas fa-upload"></i> Upload de Dados</a></li>
+                    <li><a href="fretes-dedicados.html"><i class="fas fa-truck"></i> Fretes Dedicados</a></li>
+                    <li><a href="ocr-danfe.html"><i class="fas fa-barcode"></i> OCR - Gerar XML</a></li>
+                    <li><a href="pre-fatura.html"><i class="fas fa-file-invoice"></i> Pré-Fatura</a></li>
+                    <li><a href="#" id="logout-btn" class="logout-link"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <img src="images/logmam.png" alt="Logmam Logo"
+                    style="max-width: 50%; height: auto; display: block; margin: 0 auto 10px auto;">
+                <!-- Added basic inline styles for sizing/spacing -->
+            </div>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <header class="header">
+                <h2><i class="fas fa-upload" style="margin-right: 10px; color: #6c5ce7;"></i>Upload de Dados</h2>
+                <div class="header-actions">
+                    <label for="file-input" class="btn-import">
+                        <i class="fas fa-file-import"></i> Selecionar Arquivos
+                    </label>
+                    <input type="file" id="file-input" multiple accept=".xls,.xlsx" style="display: none;">
+                </div>
+            </header>
+
+            <section class="content">
+                <div class="file-upload-container">
+                    <div class="upload-panels">
+                        <div id="file-upload-area" class="file-upload-area file-upload-left-panel" style="width: 100%; min-height: 120px; padding: 20px;">
+                            <i class="fas fa-cloud-upload-alt file-upload-icon" style="font-size: 42px; margin-bottom: 10px;"></i>
+                            <span class="file-upload-text" style="font-size: 15px;">Arraste, solte arquivos XLS aqui ou clique para selecionar</span>
+                        </div>
+                    </div>
+
+                    <div id="file-list" class="file-list"></div>
+
+                    <div class="upload-options">
+                        <button id="upload-btn" class="btn-primary" style="display: none;">
+                            <i class="fas fa-upload"></i> Iniciar Upload
+                        </button>
+                    </div>
+
+                    <div id="progress-container" class="progress-container" style="display: none;">
+                        <div class="progress">
+                            <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%;"
+                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div id="progress-text" class="progress-text">Preparando arquivos...</div>
+                    </div>
+
+                    <div id="upload-results" class="upload-results"></div>
+                </div>
+            </section>
+            <section class="upload-summary">
+                <h3>Resumo do Upload</h3>
+                <div class="summary-grid">
+                    <div class="summary-item processed">
+                        <span class="summary-label">Registros Processados:</span>
+                        <span class="summary-value" id="count-processed">0</span>
+                    </div>
+                    <div class="summary-item success">
+                        <span class="summary-label">Inseridos com Sucesso:</span>
+                        <span class="summary-value" id="count-success">0</span>
+                    </div>
+                    <div class="summary-item duplicate">
+                        <span class="summary-label">Duplicados (Ignorados):</span>
+                        <span class="summary-value" id="count-duplicate">0</span>
+                    </div>
+                    <div class="summary-item error">
+                        <span class="summary-label">Erros:</span>
+                        <span class="summary-value" id="count-error">0</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Use a regular script tag without type="module" -->
+    <script src="upload.js"></script>
+    <script src="auth.js"></script>
+</body>
+
+</html>

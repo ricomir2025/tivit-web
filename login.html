@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Controles Logmam</title>
+    <meta name="description" content="Acesse a plataforma de gestão e controle logístico Logmam">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+    <div class="login-wrapper">
+        <!-- Floating decorative elements -->
+        <div class="floating-badge"></div>
+        <div class="floating-badge"></div>
+        <div class="floating-badge"></div>
+
+        <div class="login-container">
+            <div class="login-card">
+                <!-- Logo -->
+                <div class="login-logo">
+                    <img src="images/logmam.png" alt="Logmam Transportes">
+                </div>
+
+                <!-- Title -->
+                <h1 class="login-title">Controles Logmam</h1>
+                <p class="login-subtitle">Acesse sua conta para continuar</p>
+
+                <!-- Error Message -->
+                <div id="login-error" class="login-error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span id="error-text">Credenciais inválidas</span>
+                </div>
+
+                <!-- Login Form -->
+                <form id="login-form" class="login-form" autocomplete="on">
+                    <div class="input-group">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" id="email" name="email" placeholder="Digite seu e-mail" autocomplete="email"
+                            required>
+                    </div>
+
+                    <div class="input-group">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="password" name="password" placeholder="Digite sua senha"
+                            autocomplete="current-password" required>
+                        <button type="button" class="password-toggle" id="toggle-password" aria-label="Mostrar senha">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+
+                    <button type="submit" class="login-btn" id="login-btn">
+                        <span class="btn-text">
+                            <i class="fas fa-sign-in-alt"></i> Entrar
+                        </span>
+                        <span class="btn-loading">
+                            <span class="btn-spinner"></span> Autenticando...
+                        </span>
+                    </button>
+                </form>
+
+                <!-- Footer -->
+                <div class="login-footer">
+                    Plataforma <span class="accent">Logmam</span> Transportes &copy; 2025
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+
+</html>

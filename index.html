@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controles Logmam</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Barra Lateral Esquerda -->
+        <aside class="sidebar">
+            <div id="user-info-section" class="sidebar-user-info">
+                <div class="user-avatar"><i class="fas fa-user-circle"></i></div>
+                <div class="user-details">
+                    <span class="user-name">Carregando...</span>
+                    <span class="user-profile">...</span>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="gerar-protocolo.html"><i class="fas fa-file-alt"></i> Gerar Protocolo</a></li>
+                    <li><a href="upload.html"><i class="fas fa-upload"></i> Upload de Dados</a></li>
+                    <li><a href="fretes-dedicados.html"><i class="fas fa-truck"></i> Fretes Dedicados</a></li>
+                    <li><a href="ocr-danfe.html"><i class="fas fa-barcode"></i> OCR - Gerar XML</a></li>
+                    <li><a href="pre-fatura.html"><i class="fas fa-file-invoice"></i> Pré-Fatura</a></li>
+                    <li><a href="#" id="logout-btn" class="logout-link"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <img src="images/logmam.png" alt="Logmam Logo"
+                    style="max-width: 50%; height: auto; display: block; margin: 0 auto 10px auto;">
+                <!-- Added basic inline styles for sizing/spacing -->
+            </div>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">CONTROLES<br>LOGMAM</h1>
+                    <p>Plataforma de gestão e controle logístico</p>
+                </div>
+                <!-- Imagem principal -->
+                <div class="hero-image">
+                    <div class="laptop-container">
+                        <img class="laptop-img" src="images/home.jpg" alt="Controles Logmam">
+                        <div class="laptop-overlay"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- For the features section, update the links to make them functional: -->
+            <div class="features-section">
+                <div class="feature-card">
+                    <a href="gerar-protocolo.html" class="feature-link">
+                        <i class="fas fa-file-alt"></i>
+                        <h3>Geração de Protocolos</h3>
+                        <p>Crie e gerencie protocolos de forma rápida e eficiente</p>
+                    </a>
+                </div>
+                <div class="feature-card">
+                    <a href="upload.html" class="feature-link">
+                        <i class="fas fa-upload"></i>
+                        <h3>Upload de Dados</h3>
+                        <p>Importe seus dados de forma simples e segura</p>
+                    </a>
+                </div>
+                <div class="feature-card">
+                    <a href="fretes-dedicados.html" class="feature-link">
+                        <i class="fas fa-truck"></i>
+                        <h3>Fretes Dedicados</h3>
+                        <p>Conferência de fretes dedicados</p>
+                    </a>
+                </div>
+                <div class="feature-card">
+                    <a href="ocr-danfe.html" class="feature-link">
+                        <i class="fas fa-barcode"></i>
+                        <h3>OCR - Gerar XML</h3>
+                        <p>Leia DANFEs via OCR e gere XML/PDF automaticamente</p>
+                    </a>
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+</body>
+
+</html>

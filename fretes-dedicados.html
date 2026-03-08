@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fretes Dedicados | Controles Logmam</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/fretes-dedicados.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- SheetJS for reading Excel files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <!-- Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Barra Lateral Esquerda -->
+        <aside class="sidebar">
+            <div id="user-info-section" class="sidebar-user-info">
+                <div class="user-avatar"><i class="fas fa-user-circle"></i></div>
+                <div class="user-details">
+                    <span class="user-name">Carregando...</span>
+                    <span class="user-profile">...</span>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="gerar-protocolo.html"><i class="fas fa-file-alt"></i> Gerar Protocolo</a></li>
+                    <li><a href="upload.html"><i class="fas fa-upload"></i> Upload de Dados</a></li>
+                    <li><a href="fretes-dedicados.html" class="active"><i class="fas fa-truck"></i> Fretes Dedicados</a>
+                    </li>
+                    <li><a href="ocr-danfe.html"><i class="fas fa-barcode"></i> OCR - Gerar XML</a></li>
+                    <li><a href="pre-fatura.html"><i class="fas fa-file-invoice"></i> Pré-Fatura</a></li>
+                    <li><a href="#" id="logout-btn" class="logout-link"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <img src="images/logmam.png" alt="Logmam Logo"
+                    style="max-width: 50%; height: auto; display: block; margin: 0 auto 10px auto;">
+            </div>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <header class="header">
+                <h2><i class="fas fa-truck" style="margin-right: 10px; color: #6c5ce7;"></i>Conferência de Fretes
+                    Dedicados</h2>
+            </header>
+
+            <section class="content">
+                <div class="upload-grid">
+                    <!-- Container 1: Oferta de Carga -->
+                    <div class="upload-card" id="card-oferta">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-file-excel"></i>
+                            </div>
+                            <h3>Oferta de Carga</h3>
+                            <p class="card-subtitle">Planilha com os dados da oferta de frete</p>
+                        </div>
+                        <div class="drop-zone" id="drop-oferta" data-type="oferta">
+                            <div class="drop-zone-content">
+                                <i class="fas fa-cloud-upload-alt drop-icon"></i>
+                                <span class="drop-text">Arraste o arquivo aqui</span>
+                                <span class="drop-formats">.xls, .xlsx</span>
+                            </div>
+                            <div class="file-preview" id="preview-oferta" style="display: none;">
+                                <i class="fas fa-file-excel file-preview-icon"></i>
+                                <div class="file-info">
+                                    <span class="file-name" id="nome-oferta"></span>
+                                    <span class="file-size" id="tamanho-oferta"></span>
+                                </div>
+                                <button class="remove-file" id="remover-oferta" title="Remover arquivo">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <label for="input-oferta" class="upload-btn">
+                            <i class="fas fa-folder-open"></i> Selecionar Arquivo
+                        </label>
+                        <input type="file" id="input-oferta" accept=".xls,.xlsx" style="display: none;">
+                    </div>
+
+                    <!-- Container 2: XML do CTE -->
+                    <div class="upload-card" id="card-xml">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-file-code"></i>
+                            </div>
+                            <h3>XML do CTE</h3>
+                            <p class="card-subtitle">Arquivo XML do CT-e emitido</p>
+                        </div>
+                        <div class="drop-zone" id="drop-xml" data-type="xml">
+                            <div class="drop-zone-content">
+                                <i class="fas fa-cloud-upload-alt drop-icon"></i>
+                                <span class="drop-text">Arraste o arquivo aqui</span>
+                                <span class="drop-formats">.xml</span>
+                            </div>
+                            <div class="file-preview" id="preview-xml" style="display: none;">
+                                <i class="fas fa-file-code file-preview-icon"></i>
+                                <div class="file-info">
+                                    <span class="file-name" id="nome-xml"></span>
+                                    <span class="file-size" id="tamanho-xml"></span>
+                                </div>
+                                <button class="remove-file" id="remover-xml" title="Remover arquivo">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <label for="input-xml" class="upload-btn">
+                            <i class="fas fa-folder-open"></i> Selecionar Arquivo
+                        </label>
+                        <input type="file" id="input-xml" accept=".xml" style="display: none;">
+                    </div>
+                </div>
+
+                <!-- Botão de Conferir -->
+                <div class="action-section">
+                    <button id="btn-conferir" class="btn-conferir" disabled>
+                        <i class="fas fa-search-dollar"></i> Conferir Fretes
+                    </button>
+                    <p class="action-hint" id="action-hint">Carregue ambos os arquivos para habilitar a conferência</p>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal de Resultado da Conferência -->
+    <div id="modal-resultado" class="modal-overlay" style="display: none;">
+        <div class="modal-backdrop" id="modal-backdrop"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3><i class="fas fa-chart-bar"></i> Resultado da Conferência</h3>
+                <button class="modal-close-btn" id="modal-close-btn" title="Fechar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="resultado-conteudo"></div>
+        </div>
+    </div>
+
+    <script src="fretes-dedicados.js"></script>
+    <script src="auth.js"></script>
+</body>
+
+</html>

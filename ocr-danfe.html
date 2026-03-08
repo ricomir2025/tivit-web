@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR - Gerar XML | Controles Logmam</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/ocr-danfe.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Supabase JS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Barra Lateral Esquerda -->
+        <aside class="sidebar">
+            <div id="user-info-section" class="sidebar-user-info">
+                <div class="user-avatar"><i class="fas fa-user-circle"></i></div>
+                <div class="user-details">
+                    <span class="user-name">Carregando...</span>
+                    <span class="user-profile">...</span>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="gerar-protocolo.html"><i class="fas fa-file-alt"></i> Gerar Protocolo</a></li>
+                    <li><a href="upload.html"><i class="fas fa-upload"></i> Upload de Dados</a></li>
+                    <li><a href="fretes-dedicados.html"><i class="fas fa-truck"></i> Fretes Dedicados</a></li>
+                    <li><a href="ocr-danfe.html" class="active"><i class="fas fa-barcode"></i> OCR - Gerar XML</a></li>
+                    <li><a href="pre-fatura.html"><i class="fas fa-file-invoice"></i> Pré-Fatura</a></li>
+                    <li><a href="#" id="logout-btn" class="logout-link"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <img src="images/logmam.png" alt="Logmam Logo"
+                    style="max-width: 50%; height: auto; display: block; margin: 0 auto 10px auto;">
+            </div>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <header class="header">
+                <h2><i class="fas fa-barcode" style="margin-right: 10px; color: #6c5ce7;"></i>OCR - Gerar XML</h2>
+                <div class="header-badges">
+                    <span class="tech-badge"><i class="fas fa-eye"></i> Google Cloud Vision</span>
+                    <span class="tech-badge"><i class="fas fa-database"></i> NSDocs API</span>
+                </div>
+            </header>
+
+            <section class="content">
+                <!-- Drop Zone -->
+                <div class="ocr-drop-zone" id="ocr-drop-zone" role="button" tabindex="0"
+                    aria-label="Área para arrastar e soltar imagens de DANFEs">
+                    <div class="drop-zone-inner">
+                        <div class="drop-icon-wrapper" id="drop-icon-wrapper">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <div class="drop-text-wrapper">
+                            <p class="drop-title" id="drop-title">Arraste e solte imagens de DANFEs</p>
+                            <p class="drop-subtitle">ou <span class="drop-click-hint">clique para selecionar</span> •
+                                PNG, JPG, WEBP</p>
+                        </div>
+                    </div>
+                    <input type="file" id="ocr-file-input" multiple accept="image/*" style="display: none;">
+                </div>
+
+                <!-- Processing Queue -->
+                <div class="ocr-queue-section" id="ocr-queue-section" style="display: none;">
+                    <div class="section-header">
+                        <div class="section-header-left">
+                            <h3>Fila de Processamento</h3>
+                            <div class="queue-badges" id="queue-badges"></div>
+                        </div>
+                        <button class="btn-clear-queue" id="btn-clear-queue" style="display: none;">
+                            <i class="fas fa-trash-alt"></i> Limpar
+                        </button>
+                    </div>
+                    <div class="queue-grid" id="queue-grid"></div>
+                    <div class="shimmer-bar" id="shimmer-bar" style="display: none;"></div>
+                </div>
+
+                <!-- Results Table -->
+                <div class="ocr-results-section" id="ocr-results-section" style="display: none;">
+                    <div class="section-header">
+                        <div class="section-header-left">
+                            <h3>Registros</h3>
+                            <span class="results-count" id="results-count"></span>
+                        </div>
+                    </div>
+                    <div class="results-table-wrapper">
+                        <table class="ocr-results-table" id="ocr-results-table">
+                            <thead>
+                                <tr>
+                                    <th>Chave de Acesso</th>
+                                    <th class="text-center">Nº NF</th>
+                                    <th>CNPJ Emitente</th>
+                                    <th class="text-right">Valor NF</th>
+                                    <th>Data Emissão</th>
+                                    <th>Status</th>
+                                    <th class="text-center" style="width: 100px;">Download</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ocr-results-body"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div class="ocr-empty-state" id="ocr-empty-state">
+                    <div class="empty-icon-wrapper">
+                        <i class="fas fa-file-image"></i>
+                    </div>
+                    <h3>Nenhuma DANFE processada</h3>
+                    <p>Arraste imagens de DANFEs para a área acima. O sistema extrairá automaticamente a chave de
+                        acesso de 44 dígitos e consultará os dados na NSDocs.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="ocr-toast" id="ocr-toast">
+        <i class="fas fa-check-circle"></i>
+        <span>Chave de acesso copiada! ✓</span>
+    </div>
+
+    <script src="ocr-danfe.js"></script>
+    <script src="auth.js"></script>
+</body>
+
+</html>
