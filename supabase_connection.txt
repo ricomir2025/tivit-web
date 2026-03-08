@@ -1,3 +1,0 @@
-supabase_url: https://niovrecstomndwikvnot.supabase.co
-
-supabase_key using anon: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5pb3ZWNzdG9tbmR3aWt2bm90Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM5MTExNTQsImV4cCI6MjA1OTQ4NzE1NH0.vzze1Q-FSy9Jf0kNHZMRVVpOMzOq_EluB4IwhU6dhYM
